@@ -22,6 +22,13 @@ let Neo4jService = class Neo4jService {
     async onModuleDestroy() {
         await this.session.close();
     }
+    async createUser(createUserDto) {
+        const result = await this.session.run('CREATE (u:User {name: $name, email: $email}) RETURN u', {
+            name: createUserDto.name,
+            email: createUserDto.email,
+        });
+        return result.records[0].get('u').properties;
+    }
     async runCypherQuery(query, params = {}) {
         try {
             const result = await this.session.run(query, params);
