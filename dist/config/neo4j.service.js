@@ -14,32 +14,22 @@ const common_1 = require("@nestjs/common");
 const neo4j_driver_1 = require("neo4j-driver");
 let Neo4jService = class Neo4jService {
     constructor() {
-        this.driver = neo4j_driver_1.default.driver('bolt://localhost:7687', neo4j_driver_1.default.auth.basic('username', 'password'));
+        this.driver = neo4j_driver_1.default.driver('bolt://localhost:7687', neo4j_driver_1.default.auth.basic('neo4j', 'password'));
     }
     async onModuleInit() {
         this.session = this.driver.session();
     }
     async onModuleDestroy() {
         await this.session.close();
+        await this.driver.close();
     }
-    async createUser(createUserDto) {
-        const result = await this.session.run('CREATE (u:User {name: $name, email: $email}) RETURN u', {
-            name: createUserDto.name,
-            email: createUserDto.email,
-        });
+    async create(query, data) {
+        const result = await this.session.run(query, data);
         return result.records[0].get('u').properties;
     }
-    async runCypherQuery(query, params = {}) {
-        try {
-            const result = await this.session.run(query, params);
-            return result.records.map((record) => record.toObject());
-        }
-        finally {
-            this.session.close();
-        }
-    }
-    async close() {
-        await this.driver.close();
+    async runQuery(query, params = {}) {
+        const result = await this.session.run(query, params);
+        return result;
     }
 };
 Neo4jService = __decorate([

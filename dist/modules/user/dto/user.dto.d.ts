@@ -1,5 +1,9 @@
 export declare class CreateUserDto {
     name: string;
     email: string;
-    cpf: string;
+    cpf: number;
+}
+export declare class UpdateUserDto {
+    name: string;
+    email: string;
 }

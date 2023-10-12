@@ -11,7 +11,7 @@ export class Neo4jService implements OnModuleInit, OnModuleDestroy {
   constructor() {
     this.driver = neo4j.driver(
       'bolt://localhost:7687',
-      neo4j.auth.basic('username', 'password'),
+      neo4j.auth.basic('neo4j', 'password'),
     );
   }
 
@@ -21,33 +21,20 @@ export class Neo4jService implements OnModuleInit, OnModuleDestroy {
 
   async onModuleDestroy() {
     await this.session.close();
+    await this.driver.close();
   }
 
-  async createUser(createUserDto: CreateUserDto) {
-    const result = await this.session.run(
-      'CREATE (u:User {name: $name, email: $email}) RETURN u',
-      {
-        name: createUserDto.name,
-        email: createUserDto.email,
-      },
-    );
+  async create(query: string, data: any) {
+    const result = await this.session.run(query, data);
 
     return result.records[0].get('u').properties;
   }
 
-  async runCypherQuery(
+  async runQuery(
     query: string,
     params: Record<string, any> = {},
   ): Promise<any> {
-    try {
-      const result = await this.session.run(query, params);
-      return result.records.map((record) => record.toObject());
-    } finally {
-      this.session.close();
-    }
-  }
-
-  async close() {
-    await this.driver.close();
+    const result = await this.session.run(query, params);
+    return result
   }
 }
