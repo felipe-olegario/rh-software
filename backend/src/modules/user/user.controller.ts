@@ -65,7 +65,7 @@ export class UserController {s
     }
   }
 
-  @Get(':cpfString/time-cards')
+  @Get(':cpfString/time-card')
   async getTimeCardsByCpf(@Param('cpfString') cpfString: string) {
     try {
 
