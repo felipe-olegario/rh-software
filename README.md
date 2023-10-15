@@ -1,23 +1,21 @@
-Olá, eu sou o Felipe e desenvolvi este projeto que consiste em uma plataforma para o RH conseguir atualizar o registro de ponto dos colaboradores, como se fosse um registro de ponto manual. Utilizei o nest por facilitar o desenvolvimento, ja ter um padrão de projeto ja pré definido e facil integração com o banco de dados neo4j.
+Olá, eu sou o Felipe e desenvolvi este projeto, o qual consiste em uma plataforma para o setor de Recursos Humanos poder atualizar o registro de ponto dos colaboradores, assemelhando-se a um registro de ponto manual. Utilizei o Nest.js por facilitar o desenvolvimento, já possuir um padrão de projeto pré-definido e permitir uma integração fácil com o banco de dados Neo4j.
 
-Para o front eu usei vue 3 com vuetify seguindo orientações.
+Para o front-end, utilizei Vue 3 com Vuetify seguindo orientações.
 
-## Para rodar a API:
+## Para executar a API:
 
 ```
 # npm
 npm install
 
+// Configurar a imagem docker do neo4j no seu dispositivo
 npm run db:init
 
 npm run start:dev
 
 ```
 
-Este banco de dados não está com o index do usuário criado permitindo criar mais de um usuario com o mesmo CPF, para criar o index acessar NEO4J_HOST e executar o comando abaxio:
-
-http://localhost:7474/
-
+Este banco de dados não possui um índice de usuário criado, o que permite a criação de mais de um usuário com o mesmo CPF. Para criar o índice, acesse NEO4J_HOST e execute o comando abaixo:
 
 ```
 NEO4J_HOST
@@ -27,7 +25,7 @@ QUERY
 CREATE CONSTRAINT FOR (u:User) REQUIRE u.cpf IS UNIQUE
 ```
 
-## Para rodar o front:
+## Para executar o front:
 
 ```
 # npm
