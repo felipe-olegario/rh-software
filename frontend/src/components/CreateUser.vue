@@ -104,7 +104,6 @@
             this.user.cpf = Number(this.user.cpf.replace(/-/g, ''))
             await ApiService.createUser(this.user)
             this.$router.push('/')
-            // this.changeStateModal(false)
           } catch (error) {
             console.log(error);
             this.textException = error.message

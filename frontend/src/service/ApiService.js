@@ -31,6 +31,13 @@ const ApiService = {
         throw new Error(`Erro ao fazer a solicitação ${error}`);
       });
   },
+  createTimeCardByCpf(cpf, timeCard) {
+    return axios.post(`${this.baseURL}/users/${cpf}/time-card`, timeCard)
+      .then(response => response.data)
+      .catch(error => {
+        throw new Error(`Erro ao fazer a solicitação ${error}`);
+      });
+  },
 };
 
 export default ApiService;

@@ -5,18 +5,21 @@ const routes = [
   {
     path: '/',
     component: () => import('@/layouts/default/Default.vue'),
+    meta: {
+      disableCache: true
+    },
     children: [
-      {
-        path: '/create-user',
-        name: 'createUser',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/CreateUser.vue'),
-      },
       {
         path: '/data-time/:cpf',
         name: 'ListTimeCard',
         component: () => import(/* webpackChunkName: "home" */ '@/views/ListTimeCard.vue'),
       }
     ],
+  },
+  {
+    path: '/create-user',
+    name: 'createUser',
+    component: () => import(/* webpackChunkName: "home" */ '@/views/CreateUserView.vue'),
   },
 ]
 

@@ -1,8 +1,8 @@
 <template>
   <v-container class="fill-height">
-    <v-row class="fill-height">
+    <v-row>
       <v-col cols="12" v-if="!users.length" class="d-flex align-center justify-center">
-        <v-card>
+        <v-card class="mb-3">
           <v-card-text>Nenhum cliente Encontrado</v-card-text>
         </v-card>
       </v-col>
@@ -31,8 +31,8 @@ export default {
       users: [],
     };
   },
-  async beforeMount() {
-    this.getUsers()
+  async created() {
+    await this.getUsers()
   },
   methods: {
     async getUsers() {
