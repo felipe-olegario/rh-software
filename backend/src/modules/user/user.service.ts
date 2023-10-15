@@ -25,7 +25,7 @@ export class UserService {
 
   async getTimeCardsByCpf(params: object) {
     const query = `
-    MATCH (u:User {cpf: $cpf})-[:HAS_TIME_ENTRY]->(timeCard:TimeCard)
+    MATCH (u:User {cpf: $cpf})-[:HAS_TIME_CARD]->(timeCard:TimeCard)
     RETURN COLLECT(timeCard) AS timeCards
   `;
 
@@ -35,7 +35,7 @@ export class UserService {
   async registerTimeCard(params: object) {
     const query = `
     MATCH (u:User {cpf: $cpf})
-    CREATE (u)-[:HAS_TIME_ENTRY]->(timeCard:TimeCard {
+    CREATE (u)-[:HAS_TIME_CARD]->(timeCard:TimeCard {
       entryTime: $entryTime,
       exitTime: $exitTime
     })

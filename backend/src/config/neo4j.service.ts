@@ -17,6 +17,7 @@ export class Neo4jService implements OnModuleInit, OnModuleDestroy {
 
   async onModuleInit() {
     this.session = this.driver.session();
+    // await this.session.run('CREATE CONSTRAINT FOR (u:User) REQUIRE u.cpf IS UNIQUE');
   }
 
   async onModuleDestroy() {

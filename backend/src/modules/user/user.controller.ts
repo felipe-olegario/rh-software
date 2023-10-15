@@ -1,4 +1,4 @@
-import { CreateTimeEntryDto } from './dto/timeCard.dto';
+import { CreateTimeCardDto } from './dto/timeCard.dto';
 import { Controller, Post, Body, Delete, Param, HttpStatus, Res, Get, Put } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from './dto/user.dto';
 import { UserService } from './user.service';
@@ -10,7 +10,11 @@ export class UserController {s
 
   @Post()
   async createUser(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createUser(createUserDto);
+    try {
+      return this.userService.createUser(createUserDto);
+    } catch (error) {
+      throw new Error(`Falha ao criar o usuário: ${error.message}`);
+    }
   }
 
   @Get()
@@ -45,10 +49,10 @@ export class UserController {s
     }
   }
 
-  @Post(':cpfString/time-entry')
+  @Post(':cpfString/time-card')
   async createTimeEntryForUser(
     @Param('cpfString') cpfString: string,
-    @Body() timeEntryDto: CreateTimeEntryDto,
+    @Body() timeEntryDto: CreateTimeCardDto,
   ) {
     try {
       const cpf = Number(cpfString); 
