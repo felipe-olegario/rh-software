@@ -1,4 +1,4 @@
-Olá, eu sou o Felipe e desenvolvi este projeto, o qual consiste em uma plataforma para o setor de Recursos Humanos poder atualizar o registro de ponto dos colaboradores, assemelhando-se a um registro de ponto manual. Utilizei o Nest.js por facilitar o desenvolvimento, já possuir um padrão de projeto pré-definido e permitir uma integração fácil com o banco de dados Neo4j.Implementei o swagger também nesse projeto, para acessar o swagger rode o projeto e acesse a porta http://localhost:3000/api.
+Olá, eu sou o Felipe e desenvolvi este projeto, o qual consiste em uma plataforma para o setor de Recursos Humanos poder atualizar o registro de ponto dos colaboradores, assemelhando-se a um registro de ponto manual. Utilizei o Nest.js por facilitar o desenvolvimento, já possuir um padrão de projeto pré-definido e permitir uma integração fácil com o banco de dados Neo4j. Implementei o swagger também nesse projeto, para acessar o swagger rode o projeto e acesse a porta http://localhost:3000/api.
 
 Para o front-end, utilizei Vue 3 com Vuetify seguindo orientações.
 
