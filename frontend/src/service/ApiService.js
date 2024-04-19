@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ApiService = {
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://localhost:3001',
 
   getUsers() {
     return axios.get(`${this.baseURL}/users`)

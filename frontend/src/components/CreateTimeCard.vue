@@ -53,6 +53,15 @@ export default {
       exitHour: '',
     }
   },
+  mounted() {
+    // Define a data atual no formato DD/MM/YYYY
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const year = today.getFullYear();
+    this.exitDate = `${day}/${month}/${year}`;
+    this.entryDate = `${day}/${month}/${year}`;
+  },
   created() {
     moment.locale('pt-br')
   },
